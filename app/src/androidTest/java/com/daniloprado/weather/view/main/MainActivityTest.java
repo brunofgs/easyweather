@@ -14,14 +14,12 @@ public class MainActivityTest extends GenericTest {
     private String searchCity1 = new String("Lisbon");
     private String searchResult1 = new String("Lisbon, Lisbon, Portugal");
 
-
     @Test
     public void addCity() {
         new CityList()
                 .addCity()
                 .addName(searchCity1,searchResult1);
     }
-
 
     @Test
     public void checkWeather() {
