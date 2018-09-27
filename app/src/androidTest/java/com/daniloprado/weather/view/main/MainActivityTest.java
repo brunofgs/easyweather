@@ -1,6 +1,5 @@
 package com.daniloprado.weather.view.main;
 
-
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
@@ -10,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 
 import com.daniloprado.weather.R;
+import com.daniloprado.weather.view.main.view.CityList;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -32,12 +32,31 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
-@LargeTest
-@RunWith(AndroidJUnit4.class)
-public class MainActivityTest {
 
-    @Rule
-    public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
+@RunWith(AndroidJUnit4.class)
+public class MainActivityTest extends GenericTest {
+
+    private String searchCity1 = new String("Lisbon");
+    private String searchResult1 = new String("Lisbon, Lisbon, Portugal");
+
+
+    @Test
+    public void addCity() {
+        new CityList()
+                .addCity()
+                .addName(searchCity1,searchResult1);
+    }
+
+
+    @Test
+    public void checkWeather() {
+        new CityList()
+                .openCity(searchCity1)
+                .checkWeather()
+                .pressBack();
+
+    }
+
 
     @Test
     public void mainActivityTest2() {
